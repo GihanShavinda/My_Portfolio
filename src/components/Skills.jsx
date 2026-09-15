@@ -29,11 +29,22 @@ const skillCategories = [
     ],
   },
   {
-    category: "Security / Blue Team",
+    category: "Offensive / Red Team",
     color: "#f43f5e",
     skills: [
+      { name: "Web App Pentesting", level: 74 },
+      { name: "Burp Suite", level: 72 },
+      { name: "Nmap / Recon", level: 76 },
+      { name: "Metasploit", level: 66 },
+      { name: "SQLi / XSS", level: 70 },
+    ],
+  },
+  {
+    category: "Defensive / Blue Team",
+    color: "#22d3ee",
+    skills: [
       { name: "Linux / Bash", level: 78 },
-      { name: "Wireshark / Nmap", level: 70 },
+      { name: "Wireshark", level: 72 },
       { name: "Log & SIEM Analysis", level: 66 },
       { name: "Threat Detection", level: 68 },
       { name: "Incident Response", level: 62 },

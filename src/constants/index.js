@@ -428,6 +428,15 @@ const projects = [
 // `accent` is one of: "cyan" | "emerald" | "amber".
 const certifications = [
   {
+  title: " Pre Security",  // e.g. "Jr Penetration Tester" or the exact name
+  issuer: "TryHackMe",
+  platform: "",
+  date: "Aug 2025",        // your completion month/year
+  credentialId: "THM-7SCNTVZA4C",        // THM certificate ID, if any
+  accent: "amber",
+  credentialUrl: "https://tryhackme.com/certificate/THM-7SCNTVZA4C",       // THM certificate URL
+  },
+  {
     title: "Security Operations Center (SOC)",
     issuer: "Cisco Learning and Certifications",
     platform: "",

@@ -90,7 +90,7 @@ const ProjectDetail = () => {
 
   const {
     name, tagline, overview, image, industry, deliverables, technologies,
-    context, problem, solution, designSystem, gallery,
+    context, problem, solution, security, gallery,
     source_code_link, live_link, tags,
   } = project;
 
@@ -226,48 +226,51 @@ const ProjectDetail = () => {
           </section>
         )}
 
-        {/* design system */}
-        {designSystem && (designSystem.colors?.length || designSystem.typography?.length) && (
+        {/* security concepts applied */}
+        {security && security.length > 0 && (
           <section style={{ marginTop: "4.5rem" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "1.2rem", marginBottom: "2rem" }}>
-              <h2 className="font-display" style={{ color: "#fff", fontSize: "1.9rem", margin: 0, whiteSpace: "nowrap" }}>
-                The Design System
+            <div style={{ display: "flex", alignItems: "center", gap: "1.2rem", marginBottom: "1.6rem" }}>
+              <h2 className="font-display" style={{ color: "#fff", fontSize: "1.9rem", margin: 0, whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: ".6rem" }}>
+                <span aria-hidden style={{ color: "var(--c-emerald)" }}>🛡</span> Security
               </h2>
               <span style={{ flex: 1, height: 1, background: "var(--c-line)" }} />
+              <span className="font-mono" style={{ fontSize: ".68rem", color: "var(--c-emerald)", letterSpacing: ".1em", whiteSpace: "nowrap" }}>
+                {security.length} measure{security.length === 1 ? "" : "s"}
+              </span>
             </div>
+            <p className="font-body" style={{ color: "var(--c-muted)", fontSize: ".98rem", lineHeight: 1.7, margin: "0 0 1.8rem", maxWidth: 680 }}>
+              Security concepts and defensive practices applied while building this project.
+            </p>
 
-            {designSystem.colors?.length > 0 && (
-              <>
-                <div className="font-mono" style={{ color: "var(--c-cyan)", fontSize: ".75rem", letterSpacing: ".12em", marginBottom: "1rem" }}>
-                  COLORS
-                </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginBottom: "2.5rem" }}>
-                  {designSystem.colors.map((c) => (
-                    <div key={c.hex} style={{ width: 150 }}>
-                      <div style={{ height: 88, borderRadius: 12, background: c.hex, border: "1px solid var(--c-line)" }} />
-                      <div className="font-body" style={{ color: "#e6eef7", fontSize: ".9rem", marginTop: ".5rem" }}>{c.name}</div>
-                      <div className="font-mono" style={{ color: "var(--c-muted)", fontSize: ".78rem" }}>{c.hex}</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
+              {security.map((item, i) => {
+                const title = typeof item === "string" ? item : item.title;
+                const detail = typeof item === "string" ? "" : item.detail;
+                const tag = typeof item === "string" ? "" : item.category;
+                return (
+                  <div
+                    key={title + i}
+                    className="term-panel relative overflow-hidden"
+                    style={{ padding: "1.1rem 1.2rem" }}
+                  >
+                    {/* left secure rail */}
+                    <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--c-emerald)", boxShadow: "0 0 10px var(--c-emerald)" }} />
+                    <div className="flex items-center gap-2" style={{ marginBottom: detail ? ".5rem" : 0 }}>
+                      <span className="led" style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--c-emerald)", boxShadow: "0 0 9px var(--c-emerald)", flexShrink: 0 }} />
+                      <h3 className="font-display" style={{ color: "#fff", fontSize: "1rem", margin: 0, lineHeight: 1.25 }}>{title}</h3>
+                      {tag && (
+                        <span className="font-mono" style={{ marginLeft: "auto", fontSize: ".58rem", color: "var(--c-cyan)", border: "1px solid rgba(34,211,238,.4)", borderRadius: 4, padding: ".1rem .4rem", letterSpacing: ".06em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
+                          {tag}
+                        </span>
+                      )}
                     </div>
-                  ))}
-                </div>
-              </>
-            )}
-
-            {designSystem.typography?.length > 0 && (
-              <>
-                <div className="font-mono" style={{ color: "var(--c-cyan)", fontSize: ".75rem", letterSpacing: ".12em", marginBottom: "1rem" }}>
-                  TYPOGRAPHY
-                </div>
-                <div style={{ display: "grid", gap: ".8rem" }}>
-                  {designSystem.typography.map((t) => (
-                    <div key={t} className="term-panel" style={{ padding: ".9rem 1.2rem", display: "flex", alignItems: "center", gap: "1rem" }}>
-                      <span className="font-display" style={{ color: "#fff", fontSize: "1.6rem" }}>Aa</span>
-                      <span className="font-body" style={{ color: "var(--c-muted)", fontSize: ".95rem" }}>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+                    {detail && (
+                      <p className="font-body" style={{ color: "var(--c-muted)", fontSize: ".9rem", lineHeight: 1.6, margin: 0 }}>{detail}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </section>
         )}
 
