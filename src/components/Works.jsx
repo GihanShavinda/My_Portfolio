@@ -61,18 +61,20 @@ const ProjectCard = ({
             </span>
           </div>
 
-          <div className="absolute inset-0 flex justify-end m-3 pointer-events-none">
-            <div
-              onClick={(e) => { e.stopPropagation(); window.open(source_code_link, "_blank"); }}
-              className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer pointer-events-auto"
-              style={{ background: "rgba(5,7,13,.85)", border: "1px solid var(--c-line)" }}
-              role="button"
-              aria-label="Open source code"
-              title="Source code"
-            >
-              <img src={github} alt="source code" className="w-1/2 h-1/2 object-contain" />
+          {source_code_link && (
+            <div className="absolute inset-0 flex justify-end m-3 pointer-events-none">
+              <div
+                onClick={(e) => { e.stopPropagation(); window.open(source_code_link, "_blank"); }}
+                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer pointer-events-auto"
+                style={{ background: "rgba(5,7,13,.85)", border: "1px solid var(--c-line)" }}
+                role="button"
+                aria-label="Open source code"
+                title="Source code"
+              >
+                <img src={github} alt="source code" className="w-1/2 h-1/2 object-contain" />
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* title (2 lines) + description (4 lines), clamped so all cards match */}

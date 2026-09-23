@@ -1,0 +1,6 @@
+Place your two real CV PDF files in this public folder using these exact names:
+
+1. Gihan-Shavinda-Security-Engineering-CV.pdf
+2. Gihan-Shavinda-Full-Stack-Development-CV.pdf
+
+The portfolio CV selector in src/components/Profilecard.jsx already points to these paths.

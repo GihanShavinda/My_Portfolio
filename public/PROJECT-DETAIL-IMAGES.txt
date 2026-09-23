@@ -1,0 +1,30 @@
+PROJECT DETAIL SCREENSHOTS
+==========================
+
+The updated ProjectDetail page never shows the hero image twice.
+
+Each project can display:
+- 1 primary `image` (large hero screenshot)
+- up to 3 DIFFERENT screenshots inside `gallery`
+
+Recommended screenshot roles:
+1. Main dashboard / primary interface -> `image`
+2. Architecture / workflow / important feature -> gallery item 1
+3. Investigation / analytics / results screen -> gallery item 2
+4. Secondary feature / report / mobile screen -> gallery item 3
+
+Gallery supports either simple image imports:
+
+  gallery: [screen2, screen3, screen4]
+
+or professional captions:
+
+  gallery: [
+    { src: screen2, caption: "Detection dashboard — alert triage and risk context" },
+    { src: screen3, caption: "Architecture / processing workflow" },
+    { src: screen4, caption: "Explainability and investigation view" },
+  ]
+
+IMPORTANT:
+Do not include the same image used in `image:` inside `gallery:`.
+Even if it is accidentally included, ProjectDetail.jsx automatically removes the duplicate.

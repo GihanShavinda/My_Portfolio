@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import profileImage from "../assets/profile.jpeg";
 
 // ── EDIT THESE ────────────────────────────────────────────────────────────────
 const PROFILE = {
   handle: "gihan",
   name: "Gihan Shavinda",
   roles: [
-    "Full-Stack Developer",
-    "Cyber Security Enthusiast",
-    "Aspiring SOC Analyst",
+    "Security Engineering",
+    "Full-Stack Development",
+    "Purple Team Security",
   ],
-  photo: "/src/assets/profile.jpeg",
+  photo: profileImage,
   initials: "GS",
   uid: "0xGS-2601",
   location: "Sri Lanka",
@@ -22,7 +23,20 @@ const PROFILE = {
   ],
   ctas: [
     { label: "./hire_me.sh", href: "#contact", primary: true },
-    { label: "cat CV.pdf", href: "/CV.pdf", primary: false },
+  ],
+  cvs: [
+    {
+      label: "Security Engineering CV",
+      short: "security_engineering.pdf",
+      href: "/Gihan-Shavinda-Security-Engineering-CV.pdf",
+      accent: "var(--c-cyan)",
+    },
+    {
+      label: "Full-Stack Development CV",
+      short: "fullstack_development.pdf",
+      href: "/Gihan-Shavinda-Full-Stack-Development-CV.pdf",
+      accent: "var(--c-emerald)",
+    },
   ],
   social: [
     {
@@ -111,7 +125,7 @@ const StatusTicker = () => {
   const items = [
     <><span className="led" /> system.status: <b style={{ color: "#22e39a" }}>ONLINE</b></>,
     <>threat.level: <b style={{ color: "#22e39a" }}>LOW</b></>,
-    <>role: full-stack × blue-team</>,
+    <>role: security-engineering × full-stack</>,
     <>loc: {PROFILE.location}</>,
     <>local.time: {clock || "--:--:--"}</>,
     <>uplink: secure // TLS 1.3</>,
@@ -155,6 +169,19 @@ const Prompt = () => (
 const ProfileCard = () => {
   const role = useRoleTyper(PROFILE.roles);
   const photoRef = useRef(null);
+  const [cvOpen, setCvOpen] = useState(false);
+  const cvMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (cvMenuRef.current && !cvMenuRef.current.contains(event.target)) {
+        setCvOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
 
   return (
     <section
@@ -185,7 +212,7 @@ const ProfileCard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="term-panel"
-          style={{ flex: "1 1 460px", maxWidth: 620, overflow: "hidden" }}
+          style={{ flex: "1 1 460px", maxWidth: 620, overflow: "visible", position: "relative", zIndex: 10 }}
         >
           <div
             style={{
@@ -235,7 +262,7 @@ const ProfileCard = () => {
             <div style={{ color: "var(--c-muted)", fontSize: ".82rem", lineHeight: 1.7, marginBottom: "1.3rem" }}>
               <span style={{ color: "var(--c-emerald)" }}>[ ok ]</span> shipping full-stack apps ·{" "}
               <span style={{ color: "var(--c-cyan)" }}>[ hunt ]</span> monitoring, detection &amp; response ·{" "}
-              <span style={{ color: "var(--c-amber)" }}>[ goal ]</span> Tier-1 SOC Analyst
+              <span style={{ color: "var(--c-amber)" }}>[ goal ]</span> Security Engineer × Full-Stack Developer
             </div>
 
             <div style={{ display: "flex", gap: ".5rem", marginBottom: "1.3rem", flexWrap: "wrap" }}>
@@ -246,10 +273,53 @@ const ProfileCard = () => {
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: ".8rem", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: ".8rem", flexWrap: "wrap", alignItems: "flex-start" }}>
               {PROFILE.ctas.map(({ label, href, primary }) => (
                 <a key={label} href={href} className={primary ? "pc-btn-primary" : "pc-btn-outline"}>{label}</a>
               ))}
+
+              <div ref={cvMenuRef} className="pc-cv-wrap">
+                <button
+                  type="button"
+                  className={`pc-btn-outline pc-cv-trigger ${cvOpen ? "is-open" : ""}`}
+                  onClick={() => setCvOpen((open) => !open)}
+                  aria-expanded={cvOpen}
+                  aria-haspopup="menu"
+                >
+                  <span>./view_cv</span>
+                  <span className="pc-cv-chevron">{cvOpen ? "▲" : "▼"}</span>
+                </button>
+
+                {cvOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.16 }}
+                    className="pc-cv-menu"
+                    role="menu"
+                  >
+                    <div className="pc-cv-head">select_target_cv:</div>
+                    {PROFILE.cvs.map(({ label, short, href, accent }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="pc-cv-option"
+                        role="menuitem"
+                        onClick={() => setCvOpen(false)}
+                      >
+                        <span className="pc-cv-dot" style={{ background: accent, boxShadow: `0 0 10px ${accent}` }} />
+                        <span>
+                          <strong>{label}</strong>
+                          <small>{short}</small>
+                        </span>
+                        <span className="pc-cv-open">↗</span>
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -299,6 +369,19 @@ const ProfileCard = () => {
         .pc-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(34,227,154,.55); }
         .pc-btn-outline { font-family: 'JetBrains Mono', monospace; font-size: .82rem; font-weight: 500; padding: .6rem 1.3rem; border-radius: 8px; text-decoration: none; cursor: pointer; color: var(--c-text); background: transparent; border: 1px solid var(--c-line); transition: border-color .2s, background .2s, transform .18s; }
         .pc-btn-outline:hover { border-color: var(--c-cyan); background: rgba(34,211,238,.08); transform: translateY(-2px); }
+        .pc-cv-wrap { position: relative; z-index: 80; }
+        .pc-cv-trigger { display: inline-flex; align-items: center; gap: .65rem; }
+        .pc-cv-trigger.is-open { border-color: var(--c-cyan); background: rgba(34,211,238,.08); }
+        .pc-cv-chevron { font-size: .58rem; color: var(--c-cyan); }
+        .pc-cv-menu { position: absolute; top: calc(100% + .7rem); left: 0; z-index: 999; width: min(360px, 88vw); padding: .6rem; border: 1px solid rgba(34,211,238,.45); border-radius: 12px; background: #070b12; box-shadow: 0 24px 65px rgba(0,0,0,.72), 0 0 34px rgba(34,211,238,.18); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); isolation: isolate; }
+        .pc-cv-head { padding: .5rem .6rem .6rem; font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--c-muted); letter-spacing: .06em; text-transform: uppercase; }
+        .pc-cv-option { display: grid; border: 1px solid transparent; grid-template-columns: auto 1fr auto; align-items: center; gap: .7rem; padding: .72rem .68rem; border-radius: 8px; color: var(--c-text); text-decoration: none; transition: background .18s ease, transform .18s ease; }
+        .pc-cv-option:hover { background: rgba(34,211,238,.09); border-color: rgba(34,211,238,.18); transform: translateX(2px); }
+        .pc-cv-option strong { display: block; font-family: 'Chakra Petch', sans-serif; font-size: .86rem; font-weight: 600; color: #fff; }
+        .pc-cv-option small { display: block; margin-top: .12rem; font-family: 'JetBrains Mono', monospace; font-size: .61rem; color: var(--c-muted); }
+        .pc-cv-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .pc-cv-open { color: var(--c-muted); font-size: .85rem; }
+        @media (max-width: 520px) { .pc-cv-menu { left: 0; right: auto; width: min(310px, calc(100vw - 3rem)); } }
       `}</style>
     </section>
   );
