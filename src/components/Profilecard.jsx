@@ -20,9 +20,7 @@ const PROFILE = {
     { value: "10+", label: "tech_stack" },
     { value: "24/7", label: "learning_mode" },
   ],
-  ctas: [
-    { label: "./hire_me.sh", href: "#contact", primary: true },
-  ],
+  ctas: [{ label: "./hire_me.sh", href: "#contact", primary: true }],
   cvs: [
     {
       label: "Security Engineering CV",
@@ -60,7 +58,14 @@ const PROFILE = {
       label: "Email",
       href: "mailto:shavindagihan389@gmail.com",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="17" height="17">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          width="17"
+          height="17"
+        >
           <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
@@ -71,6 +76,21 @@ const PROFILE = {
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
           <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+        </svg>
+      ),
+    },
+    {
+      label: "TryHackMe",
+      href: "https://tryhackme.com/p/Shavinda123",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="17"
+          height="17"
+          aria-hidden="true"
+        >
+          <path d="M10.5 2.5h3v4.1h4.1v3H13.5v3.3h3.7v3h-3.7v5.6h-3v-5.6H6.8v-3h3.7V9.6H6.4v-3h4.1V2.5z" />
         </svg>
       ),
     },
@@ -98,7 +118,9 @@ const useRoleTyper = (roles) => {
     }
     const t = setTimeout(() => {
       setText((prev) =>
-        deleting ? full.slice(0, prev.length - 1) : full.slice(0, prev.length + 1)
+        deleting
+          ? full.slice(0, prev.length - 1)
+          : full.slice(0, prev.length + 1),
       );
     }, delay);
     return () => clearTimeout(t);
@@ -111,7 +133,9 @@ const useClock = () => {
   const [now, setNow] = useState("");
   useEffect(() => {
     const tick = () =>
-      setNow(new Date().toLocaleTimeString("en-GB", { hour12: false }) + " UTC");
+      setNow(
+        new Date().toLocaleTimeString("en-GB", { hour12: false }) + " UTC",
+      );
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
@@ -122,17 +146,37 @@ const useClock = () => {
 const StatusTicker = () => {
   const clock = useClock();
   const items = [
-    <><span className="led" /> system.status: <b style={{ color: "#22e39a" }}>ONLINE</b></>,
-    <>threat.level: <b style={{ color: "#22e39a" }}>LOW</b></>,
+    <>
+      <span className="led" /> system.status:{" "}
+      <b style={{ color: "#22e39a" }}>ONLINE</b>
+    </>,
+    <>
+      threat.level: <b style={{ color: "#22e39a" }}>LOW</b>
+    </>,
     <>role: security-engineering × full-stack</>,
     <>loc: {PROFILE.location}</>,
     <>local.time: {clock || "--:--:--"}</>,
     <>uplink: secure // TLS 1.3</>,
   ];
   const row = (
-    <div style={{ display: "flex", alignItems: "center", gap: "2.6rem", paddingRight: "2.6rem" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "2.6rem",
+        paddingRight: "2.6rem",
+      }}
+    >
       {items.map((it, idx) => (
-        <span key={idx} style={{ display: "inline-flex", alignItems: "center", gap: ".5rem", whiteSpace: "nowrap" }}>
+        <span
+          key={idx}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: ".5rem",
+            whiteSpace: "nowrap",
+          }}
+        >
           {it}
         </span>
       ))}
@@ -141,12 +185,21 @@ const StatusTicker = () => {
   return (
     <div
       style={{
-        position: "absolute", top: 0, left: 0, right: 0, zIndex: 5,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 5,
         borderBottom: "1px solid var(--c-line)",
-        background: "rgba(5,7,13,0.7)", backdropFilter: "blur(6px)",
-        fontFamily: "'JetBrains Mono', monospace", fontSize: ".72rem",
-        color: "var(--c-muted)", overflow: "hidden", height: 34,
-        display: "flex", alignItems: "center",
+        background: "rgba(5,7,13,0.7)",
+        backdropFilter: "blur(6px)",
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: ".72rem",
+        color: "var(--c-muted)",
+        overflow: "hidden",
+        height: 34,
+        display: "flex",
+        alignItems: "center",
       }}
     >
       <div style={{ display: "flex", animation: "ticker 26s linear infinite" }}>
@@ -159,7 +212,8 @@ const StatusTicker = () => {
 
 const Prompt = () => (
   <span style={{ color: "var(--c-emerald)", whiteSpace: "nowrap" }}>
-    visitor@{PROFILE.handle}<span style={{ color: "var(--c-muted)" }}>:</span>
+    visitor@{PROFILE.handle}
+    <span style={{ color: "var(--c-muted)" }}>:</span>
     <span style={{ color: "var(--c-cyan)" }}>~</span>
     <span style={{ color: "var(--c-muted)" }}>$ </span>
   </span>
@@ -186,14 +240,27 @@ const ProfileCard = () => {
     <section
       className="cyber-glow-bg scanlines profile-shell"
       style={{
-        position: "relative", width: "100%", minHeight: "100vh",
-        overflow: "visible", display: "flex", alignItems: "center",
-        justifyContent: "center", paddingTop: 34,
+        position: "relative",
+        width: "100%",
+        minHeight: "100vh",
+        overflow: "visible",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: 34,
       }}
     >
       <div
         className="cyber-grid drift"
-        style={{ position: "absolute", inset: 0, opacity: 0.5, WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 50% 40%, #000 40%, transparent 100%)", maskImage: "radial-gradient(ellipse 90% 80% at 50% 40%, #000 40%, transparent 100%)" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.5,
+          WebkitMaskImage:
+            "radial-gradient(ellipse 90% 80% at 50% 40%, #000 40%, transparent 100%)",
+          maskImage:
+            "radial-gradient(ellipse 90% 80% at 50% 40%, #000 40%, transparent 100%)",
+        }}
       />
 
       <StatusTicker />
@@ -201,9 +268,16 @@ const ProfileCard = () => {
       <div
         className="profile-layout"
         style={{
-          position: "relative", zIndex: 4, width: "100%", maxWidth: 1200,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          gap: "3rem", padding: "3rem 2rem", flexWrap: "wrap",
+          position: "relative",
+          zIndex: 4,
+          width: "100%",
+          maxWidth: 1200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "3rem",
+          padding: "3rem 2rem",
+          flexWrap: "wrap",
         }}
       >
         {/* LEFT: terminal console */}
@@ -212,22 +286,55 @@ const ProfileCard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="term-panel profile-terminal"
-          style={{ flex: "1 1 460px", maxWidth: 620, overflow: "visible", position: "relative", zIndex: 10 }}
+          style={{
+            flex: "1 1 460px",
+            maxWidth: 620,
+            overflow: "visible",
+            position: "relative",
+            zIndex: 10,
+          }}
         >
           <div
             className="profile-terminal-bar"
             style={{
-              display: "flex", alignItems: "center", gap: ".5rem",
-              padding: ".7rem 1rem", borderBottom: "1px solid var(--c-line)",
+              display: "flex",
+              alignItems: "center",
+              gap: ".5rem",
+              padding: ".7rem 1rem",
+              borderBottom: "1px solid var(--c-line)",
               background: "rgba(255,255,255,0.02)",
-              fontFamily: "'JetBrains Mono', monospace", fontSize: ".72rem",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: ".72rem",
               color: "var(--c-muted)",
             }}
           >
-            <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#f43f5e" }} />
-            <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#f5b731" }} />
-            <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#22e39a" }} />
-            <span style={{ marginLeft: ".6rem" }}>visitor@{PROFILE.handle}: ~/portfolio — zsh</span>
+            <span
+              style={{
+                width: 11,
+                height: 11,
+                borderRadius: "50%",
+                background: "#f43f5e",
+              }}
+            />
+            <span
+              style={{
+                width: 11,
+                height: 11,
+                borderRadius: "50%",
+                background: "#f5b731",
+              }}
+            />
+            <span
+              style={{
+                width: 11,
+                height: 11,
+                borderRadius: "50%",
+                background: "#22e39a",
+              }}
+            />
+            <span style={{ marginLeft: ".6rem" }}>
+              visitor@{PROFILE.handle}: ~/portfolio — zsh
+            </span>
           </div>
 
           <div
@@ -235,49 +342,115 @@ const ProfileCard = () => {
             style={{
               padding: "1.6rem 1.5rem 1.8rem",
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: ".92rem", color: "var(--c-text)",
+              fontSize: ".92rem",
+              color: "var(--c-text)",
             }}
           >
-            <div style={{ lineHeight: 1.9 }}><Prompt /><span style={{ color: "var(--c-muted)" }}>whoami</span></div>
+            <div style={{ lineHeight: 1.9 }}>
+              <Prompt />
+              <span style={{ color: "var(--c-muted)" }}>whoami</span>
+            </div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
               <div
                 className="glitch font-display glow-cyan"
                 data-text={PROFILE.name}
                 style={{
-                  fontSize: "clamp(1.8rem, 4.4vw, 2.9rem)", fontWeight: 700,
-                  color: "#fff", letterSpacing: "-.01em", margin: ".2rem 0 .6rem",
+                  fontSize: "clamp(1.8rem, 4.4vw, 2.9rem)",
+                  fontWeight: 700,
+                  color: "#fff",
+                  letterSpacing: "-.01em",
+                  margin: ".2rem 0 .6rem",
                 }}
               >
                 {PROFILE.name}
               </div>
             </motion.div>
 
-            <div style={{ lineHeight: 1.9 }}><Prompt /><span style={{ color: "var(--c-muted)" }}>cat ./role.txt</span></div>
+            <div style={{ lineHeight: 1.9 }}>
+              <Prompt />
+              <span style={{ color: "var(--c-muted)" }}>cat ./role.txt</span>
+            </div>
 
-            <div style={{ fontSize: "clamp(1.05rem, 2.4vw, 1.5rem)", fontWeight: 500, margin: ".15rem 0 1.1rem", minHeight: "1.9rem" }}>
-              <span className="text-cyber-gradient font-display" style={{ fontWeight: 600 }}>{role}</span>
+            <div
+              style={{
+                fontSize: "clamp(1.05rem, 2.4vw, 1.5rem)",
+                fontWeight: 500,
+                margin: ".15rem 0 1.1rem",
+                minHeight: "1.9rem",
+              }}
+            >
+              <span
+                className="text-cyber-gradient font-display"
+                style={{ fontWeight: 600 }}
+              >
+                {role}
+              </span>
               <span className="cursor-blink">_</span>
             </div>
 
-            <div style={{ lineHeight: 1.9 }}><Prompt /><span style={{ color: "var(--c-muted)" }}>./status --now</span></div>
-            <div style={{ color: "var(--c-muted)", fontSize: ".82rem", lineHeight: 1.7, marginBottom: "1.3rem" }}>
-              <span style={{ color: "var(--c-emerald)" }}>[ ok ]</span> shipping full-stack apps ·{" "}
-              <span style={{ color: "var(--c-cyan)" }}>[ hunt ]</span> monitoring, detection &amp; response ·{" "}
-              <span style={{ color: "var(--c-amber)" }}>[ goal ]</span> Security Engineer × Full-Stack Developer
+            <div style={{ lineHeight: 1.9 }}>
+              <Prompt />
+              <span style={{ color: "var(--c-muted)" }}>./status --now</span>
+            </div>
+            <div
+              style={{
+                color: "var(--c-muted)",
+                fontSize: ".82rem",
+                lineHeight: 1.7,
+                marginBottom: "1.3rem",
+              }}
+            >
+              <span style={{ color: "var(--c-emerald)" }}>[ ok ]</span> shipping
+              full-stack apps ·{" "}
+              <span style={{ color: "var(--c-cyan)" }}>[ hunt ]</span>{" "}
+              monitoring, detection &amp; response ·{" "}
+              <span style={{ color: "var(--c-amber)" }}>[ goal ]</span> Security
+              Engineer × Full-Stack Developer
             </div>
 
-            <div style={{ display: "flex", gap: ".5rem", marginBottom: "1.3rem", flexWrap: "wrap" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: ".5rem",
+                marginBottom: "1.3rem",
+                flexWrap: "wrap",
+              }}
+            >
               {PROFILE.social.map(({ label, href, icon }) => (
-                <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="pc-social">
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="pc-social"
+                >
                   {icon}
                 </a>
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: ".8rem", flexWrap: "wrap", alignItems: "flex-start" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: ".8rem",
+                flexWrap: "wrap",
+                alignItems: "flex-start",
+              }}
+            >
               {PROFILE.ctas.map(({ label, href, primary }) => (
-                <a key={label} href={href} className={primary ? "pc-btn-primary" : "pc-btn-outline"}>{label}</a>
+                <a
+                  key={label}
+                  href={href}
+                  className={primary ? "pc-btn-primary" : "pc-btn-outline"}
+                >
+                  {label}
+                </a>
               ))}
 
               <div ref={cvMenuRef} className="pc-cv-wrap">
@@ -311,7 +484,13 @@ const ProfileCard = () => {
                         role="menuitem"
                         onClick={() => setCvOpen(false)}
                       >
-                        <span className="pc-cv-dot" style={{ background: accent, boxShadow: `0 0 10px ${accent}` }} />
+                        <span
+                          className="pc-cv-dot"
+                          style={{
+                            background: accent,
+                            boxShadow: `0 0 10px ${accent}`,
+                          }}
+                        />
                         <span>
                           <strong>{label}</strong>
                           <small>{short}</small>
@@ -334,31 +513,127 @@ const ProfileCard = () => {
           className="profile-visual"
           style={{ flex: "0 1 340px", position: "relative" }}
         >
-          <div className="hud-corners" style={{ position: "relative", padding: 10 }}>
-            <div style={{ position: "absolute", inset: "-8%", background: "radial-gradient(circle at 50% 40%, rgba(34,211,238,.22), transparent 62%)", filter: "blur(6px)", zIndex: 0 }} />
-            <div className="scanlines" style={{ position: "relative", zIndex: 1, overflow: "hidden", border: "1px solid var(--c-line)", borderRadius: 14, background: "var(--c-panel)" }}>
+          <div
+            className="hud-corners"
+            style={{ position: "relative", padding: 10 }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                inset: "-8%",
+                background:
+                  "radial-gradient(circle at 50% 40%, rgba(34,211,238,.22), transparent 62%)",
+                filter: "blur(6px)",
+                zIndex: 0,
+              }}
+            />
+            <div
+              className="scanlines"
+              style={{
+                position: "relative",
+                zIndex: 1,
+                overflow: "hidden",
+                border: "1px solid var(--c-line)",
+                borderRadius: 14,
+                background: "var(--c-panel)",
+              }}
+            >
               <img
                 ref={photoRef}
                 src={PROFILE.photo}
                 alt={PROFILE.name}
-                style={{ display: "block", width: "100%", objectFit: "cover", objectPosition: "top", filter: "grayscale(18%) contrast(1.05) drop-shadow(0 0 26px rgba(34,211,238,.25))" }}
-                onError={(e) => { e.currentTarget.style.display = "none"; const fb = document.getElementById("pc-fallback"); if (fb) fb.style.display = "flex"; }}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top",
+                  filter:
+                    "grayscale(18%) contrast(1.05) drop-shadow(0 0 26px rgba(34,211,238,.25))",
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const fb = document.getElementById("pc-fallback");
+                  if (fb) fb.style.display = "flex";
+                }}
               />
-              <div id="pc-fallback" className="text-cyber-gradient" style={{ display: "none", width: "100%", height: 360, alignItems: "center", justifyContent: "center", fontFamily: "'Chakra Petch', sans-serif", fontSize: "5rem", fontWeight: 700 }}>
+              <div
+                id="pc-fallback"
+                className="text-cyber-gradient"
+                style={{
+                  display: "none",
+                  width: "100%",
+                  height: 360,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "'Chakra Petch', sans-serif",
+                  fontSize: "5rem",
+                  fontWeight: 700,
+                }}
+              >
                 {PROFILE.initials}
               </div>
-              <div style={{ position: "absolute", left: 12, bottom: 12, zIndex: 2, fontFamily: "'JetBrains Mono', monospace", fontSize: ".66rem", color: "var(--c-cyan)", background: "rgba(5,7,13,.72)", border: "1px solid var(--c-line)", borderRadius: 6, padding: ".3rem .55rem", backdropFilter: "blur(4px)" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 12,
+                  bottom: 12,
+                  zIndex: 2,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: ".66rem",
+                  color: "var(--c-cyan)",
+                  background: "rgba(5,7,13,.72)",
+                  border: "1px solid var(--c-line)",
+                  borderRadius: 6,
+                  padding: ".3rem .55rem",
+                  backdropFilter: "blur(4px)",
+                }}
+              >
                 <span className="led" style={{ marginRight: 6 }} />
                 uid:{PROFILE.uid} · verified
               </div>
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: ".6rem", marginTop: "1rem" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: ".6rem",
+              marginTop: "1rem",
+            }}
+          >
             {PROFILE.stats.map(({ value, label }) => (
-              <div key={label} style={{ border: "1px solid var(--c-line)", borderRadius: 8, background: "rgba(34,211,238,.04)", padding: ".65rem .8rem" }}>
-                <div className="font-display" style={{ fontSize: "1.35rem", fontWeight: 700, color: "#fff", lineHeight: 1 }}>{value}</div>
-                <div className="font-mono" style={{ fontSize: ".64rem", color: "var(--c-muted)", marginTop: ".25rem", letterSpacing: ".02em" }}>{label}</div>
+              <div
+                key={label}
+                style={{
+                  border: "1px solid var(--c-line)",
+                  borderRadius: 8,
+                  background: "rgba(34,211,238,.04)",
+                  padding: ".65rem .8rem",
+                }}
+              >
+                <div
+                  className="font-display"
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: 700,
+                    color: "#fff",
+                    lineHeight: 1,
+                  }}
+                >
+                  {value}
+                </div>
+                <div
+                  className="font-mono"
+                  style={{
+                    fontSize: ".64rem",
+                    color: "var(--c-muted)",
+                    marginTop: ".25rem",
+                    letterSpacing: ".02em",
+                  }}
+                >
+                  {label}
+                </div>
               </div>
             ))}
           </div>
