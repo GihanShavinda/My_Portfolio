@@ -18,6 +18,7 @@ import ProfileCard from "./components/Profilecard";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectDetail from "./pages/ProjectDetail";
 import AllCertifications from "./pages/AllCertifications";
+import AllProjects from "./pages/AllProjects";
 
 // The full single-page portfolio (route "/").
 const Home = () => (
@@ -79,6 +80,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
         <Route path="/certifications" element={<AllCertifications />} />
+        <Route path="/projects" element={<AllProjects />} />
       </Routes>
     </BrowserRouter>
   );

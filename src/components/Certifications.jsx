@@ -64,9 +64,9 @@ export const CertCard = ({
 }) => {
   const color = ACCENTS[accent] || ACCENTS.cyan;
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.12, 0.6)} style={{ width: CARD_W }}>
+    <motion.div className="cert-card-shell" variants={fadeIn("up", "spring", index * 0.12, 0.6)} style={{ width: CARD_W }}>
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden cert-card"
         style={{
           width: CARD_W, height: CARD_H, display: "flex", flexDirection: "column",
           padding: "1.5rem 1.4rem", borderRadius: 14,

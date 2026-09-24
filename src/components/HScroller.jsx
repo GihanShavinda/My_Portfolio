@@ -49,7 +49,7 @@ const HScroller = ({ children, ariaLabel = "carousel", viewMoreTo = "", viewMore
   const mask = overflowing ? `linear-gradient(90deg, ${startStop}, ${endStop})` : "none";
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="hsc-shell" style={{ position: "relative" }}>
       <style>{`
         .hsc-row {
           display: flex; flex-wrap: nowrap; gap: 1.75rem;
@@ -79,7 +79,7 @@ const HScroller = ({ children, ariaLabel = "carousel", viewMoreTo = "", viewMore
           transition: all .2s ease;
         }
         .hsc-more:hover { border-color: #22d3ee; background: rgba(34,211,238,.1); transform: translateY(-2px); }
-        @media (max-width: 640px) { .hsc-arrow { display: none; } }
+        @media (max-width: 640px) { .hsc-arrow { display: none; } .hsc-more { width: 100%; max-width: 320px; } }
       `}</style>
 
       {overflowing && !atStart && (

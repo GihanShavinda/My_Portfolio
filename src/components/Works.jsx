@@ -21,7 +21,7 @@ const clamp = (lines) => ({
   overflow: "hidden",
 });
 
-const ProjectCard = ({
+export const ProjectCard = ({
   index,
   slug,
   name,
@@ -34,10 +34,10 @@ const ProjectCard = ({
   const openCaseStudy = () => slug && navigate(`/project/${slug}`);
 
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.2, 0.6)} style={{ width: CARD_W }}>
+    <motion.div className="project-card-shell" variants={fadeIn("up", "spring", index * 0.2, 0.6)} style={{ width: CARD_W }}>
       <Tilt
         options={{ max: 12, scale: 1, speed: 450 }}
-        className="bg-tertiary p-5 rounded-2xl"
+        className="bg-tertiary p-5 rounded-2xl project-card"
         style={{ width: CARD_W, height: CARD_H, border: "1px solid var(--c-line)", display: "flex", flexDirection: "column" }}
       >
         {/* clickable media → case study (fixed height) */}
@@ -130,12 +130,12 @@ const Works = () => {
         >
           A selection of things I've built end-to-end. Click any project to open
           its full case study — the problem, my approach, the stack, and the
-          result. Scroll sideways to see more.
+          result. Scroll sideways through the featured work, or open the full project archive to browse every case study together.
         </motion.p>
       </div>
 
       <div className="mt-16">
-        <HScroller ariaLabel="Projects">
+        <HScroller ariaLabel="Projects" viewMoreTo="/projects" viewMoreLabel="view all projects →">
           {projects.map((project, index) => (
             <ProjectCard key={`project-${index}`} index={index} {...project} />
           ))}

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import profileImage from "../assets/profile.jpeg";
-
+import profileImage from "../assets/profile-photo.jpeg";
 // ── EDIT THESE ────────────────────────────────────────────────────────────────
 const PROFILE = {
   handle: "gihan",
@@ -185,7 +184,7 @@ const ProfileCard = () => {
 
   return (
     <section
-      className="cyber-glow-bg scanlines"
+      className="cyber-glow-bg scanlines profile-shell"
       style={{
         position: "relative", width: "100%", minHeight: "100vh",
         overflow: "hidden", display: "flex", alignItems: "center",
@@ -200,6 +199,7 @@ const ProfileCard = () => {
       <StatusTicker />
 
       <div
+        className="profile-layout"
         style={{
           position: "relative", zIndex: 4, width: "100%", maxWidth: 1200,
           display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -211,10 +211,11 @@ const ProfileCard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="term-panel"
+          className="term-panel profile-terminal"
           style={{ flex: "1 1 460px", maxWidth: 620, overflow: "visible", position: "relative", zIndex: 10 }}
         >
           <div
+            className="profile-terminal-bar"
             style={{
               display: "flex", alignItems: "center", gap: ".5rem",
               padding: ".7rem 1rem", borderBottom: "1px solid var(--c-line)",
@@ -230,6 +231,7 @@ const ProfileCard = () => {
           </div>
 
           <div
+            className="profile-terminal-body"
             style={{
               padding: "1.6rem 1.5rem 1.8rem",
               fontFamily: "'JetBrains Mono', monospace",
@@ -329,6 +331,7 @@ const ProfileCard = () => {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="profile-visual"
           style={{ flex: "0 1 340px", position: "relative" }}
         >
           <div className="hud-corners" style={{ position: "relative", padding: 10 }}>
