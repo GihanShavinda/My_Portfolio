@@ -187,7 +187,7 @@ const ProfileCard = () => {
       className="cyber-glow-bg scanlines profile-shell"
       style={{
         position: "relative", width: "100%", minHeight: "100vh",
-        overflow: "hidden", display: "flex", alignItems: "center",
+        overflow: "visible", display: "flex", alignItems: "center",
         justifyContent: "center", paddingTop: 34,
       }}
     >
