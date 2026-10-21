@@ -1582,7 +1582,7 @@ const certifications = [
   credentialUrl: "https://tryhackme.com/certificate/THM-7SCNTVZA4C",       // THM certificate URL
   },
  {
-  title: " Pre Security",  // e.g. "Jr Penetration Tester" or the exact name
+  title: " Cyber Security 101",  // e.g. "Jr Penetration Tester" or the exact name
   issuer: "TryHackMe",
   platform: "",
   date: "Oct 2026",        // your completion month/year
