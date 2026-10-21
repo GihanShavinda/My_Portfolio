@@ -15,11 +15,11 @@ const PROFILE = {
   uid: "0xGS-2601",
   location: "Sri Lanka",
   stats: [
-    // { value: "3+", label: "yrs_building" },
-    // { value: "20+", label: "projects_shipped" },
     { value: "10+", label: "tech_stack" },
     { value: "24/7", label: "learning_mode" },
   ],
+    // { value: "3+", label: "yrs_building" },
+    // { value: "20+", label: "projects_shipped" },
   ctas: [{ label: "./hire_me.sh", href: "#contact", primary: true }],
   cvs: [
     {
