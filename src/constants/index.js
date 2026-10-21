@@ -1576,11 +1576,21 @@ const certifications = [
   title: " Pre Security",  // e.g. "Jr Penetration Tester" or the exact name
   issuer: "TryHackMe",
   platform: "",
-  date: "Aug 2025",        // your completion month/year
+  date: "Aug 2026",        // your completion month/year
   credentialId: "THM-7SCNTVZA4C",        // THM certificate ID, if any
   accent: "amber",
   credentialUrl: "https://tryhackme.com/certificate/THM-7SCNTVZA4C",       // THM certificate URL
   },
+ {
+  title: " Pre Security",  // e.g. "Jr Penetration Tester" or the exact name
+  issuer: "TryHackMe",
+  platform: "",
+  date: "Oct 2026",        // your completion month/year
+  credentialId: "THM-RQ3X86DGNP",        // THM certificate ID, if any
+  accent: "amber",
+  credentialUrl: "https://tryhackme.com/certificate/THM-RQ3X86DGNP",       // THM certificate URL
+  },
+
   {
     title: "Security Operations Center (SOC)",
     issuer: "Cisco Learning and Certifications",
@@ -1616,6 +1626,15 @@ const certifications = [
     credentialId: "WE4UK4LSSMNP",
     accent: "emerald",
     credentialUrl: "https://coursera.org/verify/WE4UK4LSSMNP",
+  },
+    {
+    title: "Tools of the Trade: Linux and SQL",
+    issuer: "Google",
+    platform: "Coursera",
+    date: "Oct 2026",
+    credentialId: "ID18HL4MSMO2",
+    accent: "emerald",
+    credentialUrl: "https://coursera.org/verify/ID18HL4MSMO2",
   },
   {
     title: "Cybersecurity & Ethical Hacking",

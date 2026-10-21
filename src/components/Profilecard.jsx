@@ -14,6 +14,7 @@ const PROFILE = {
   initials: "GS",
   uid: "0xGS-2601",
   location: "Sri Lanka",
+  description: "Passionate about security and full-stack development, with a focus on creating secure and scalable applications.",
   stats: [
     { value: "10+", label: "tech_stack" },
     { value: "24/7", label: "learning_mode" },
